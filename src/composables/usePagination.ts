@@ -12,8 +12,23 @@ export function usePagination({
   page?: number
 } = {}) {
   const currentPage = ref(page)
+  const total = ref<number>(Infinity)
+
+  const limitsWhitelist = ref<Set<number>>(limits)
+  const currentLimit = ref(
+    show && limitsWhitelist.value.has(show) ? show : [...limitsWhitelist.value][0],
+  )
+
+  const offset = computed(() =>
+    currentPage.value > 1 ? (currentPage.value - 1) * currentLimit.value : 0,
+  )
+  const paginationApiParams = computed(() => ({
+    offset: offset.value,
+    limit: currentLimit.value,
+  }))
 
   return {
     currentPage,
+    paginationApiParams,
   }
 }

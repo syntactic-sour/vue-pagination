@@ -6,4 +6,9 @@ describe('usePagination', () => {
     const { currentPage } = usePagination()
     expect(currentPage.value).toEqual(1)
   })
+
+  it('sets default limit correctly', () => {
+    const { paginationApiParams } = usePagination({ limits: new Set([10]), page: 2 })
+    expect(paginationApiParams.value.limit).toEqual(10)
+  })
 })
