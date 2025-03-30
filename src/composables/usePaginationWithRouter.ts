@@ -52,4 +52,17 @@ export function usePaginationWithRouter(limits = DEFAULT_PAGINATION_LIMITS) {
 
     router.push({ query: newQuery })
   })
+
+  return {
+    limitsWhitelist,
+    currentPage,
+    pagesTotal,
+    paginationApiParams,
+
+    setTotal,
+    setPage,
+    setLimit,
+    setPrevPage,
+    setNextPage,
+  }
 }
