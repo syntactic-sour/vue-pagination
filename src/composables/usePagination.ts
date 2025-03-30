@@ -73,13 +73,19 @@ export function usePagination({
     }
   }
 
+  function setNextPage() {}
+
+  function setPrevPage() {}
+
   return {
     currentPage,
     pagesTotal,
     paginationApiParams,
 
     setTotal,
-    setPage,
     setLimit,
+    setPage,
+    setNextPage,
+    setPrevPage,
   }
 }
