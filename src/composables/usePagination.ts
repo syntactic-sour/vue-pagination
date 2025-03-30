@@ -62,6 +62,8 @@ export function usePagination({
     currentPage.value = newPage
   }
 
+  function setLimit() {}
+
   return {
     currentPage,
     pagesTotal,
@@ -69,5 +71,6 @@ export function usePagination({
 
     setTotal,
     setPage,
+    setLimit,
   }
 }

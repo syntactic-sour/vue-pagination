@@ -87,4 +87,50 @@ describe('usePagination', () => {
     expect(currentPage.value).toEqual(10)
     expect(pagesTotal.value).toEqual(10)
   })
+
+  it('sets offset correctly after currentPage change', () => {
+    const { paginationApiParams, setTotal, setPage } = usePagination({
+      limits: new Set([10]),
+      page: 3,
+    })
+
+    expect(paginationApiParams.value.offset).toEqual(20)
+
+    setTotal(0)
+    expect(paginationApiParams.value.offset).toEqual(0)
+
+    setTotal(100)
+    setPage(3)
+    expect(paginationApiParams.value.offset).toEqual(20)
+
+    setPage(10)
+    expect(paginationApiParams.value.offset).toEqual(90)
+  })
+
+  it('sets limit correctly', () => {
+    const { paginationApiParams, setLimit } = usePagination({
+      limits: new Set([10, 20]),
+      page: 3,
+    })
+
+    setLimit(40)
+    expect(paginationApiParams.value.limit).toEqual(10)
+    setLimit(0)
+    expect(paginationApiParams.value.limit).toEqual(10)
+    setLimit(100)
+    expect(paginationApiParams.value.limit).toEqual(10)
+    setLimit(20)
+    expect(paginationApiParams.value.limit).toEqual(20)
+  })
+
+  it('sets page correctly after limit change', () => {
+    const { currentPage, setLimit } = usePagination({
+      limits: new Set([10, 20]),
+      page: 3,
+    })
+
+    expect(currentPage.value).toEqual(3)
+    setLimit(20)
+    expect(currentPage.value).toEqual(1)
+  })
 })
