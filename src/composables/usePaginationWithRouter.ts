@@ -97,8 +97,6 @@ export function usePaginationWithRouter(limits = DEFAULT_PAGINATION_LIMITS) {
       // Important to keep this order. Limit may reset the page to 1
       setLimit(Number(queryParams.show))
       setPage(Number(queryParams.page))
-
-      // TODO: emit event to be able to fetch data here
     },
     { immediate: true },
   )
