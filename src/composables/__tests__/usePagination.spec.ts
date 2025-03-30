@@ -154,4 +154,26 @@ describe('usePagination', () => {
     setNextPage()
     expect(currentPage.value).toEqual(10)
   })
+
+  it('sets previous page correctly', () => {
+    const { currentPage, pagesTotal, setTotal, setPrevPage, setPage } = usePagination()
+
+    setTotal(0)
+    expect(currentPage.value).toEqual(1)
+    expect(pagesTotal.value).toEqual(1)
+
+    setPrevPage()
+    expect(currentPage.value).toEqual(1)
+
+    setTotal(100)
+    setPage(3)
+    setPrevPage()
+    expect(currentPage.value).toEqual(2)
+
+    setPage(1)
+    expect(currentPage.value).toEqual(1)
+    expect(pagesTotal.value).toEqual(1)
+    setPrevPage()
+    expect(currentPage.value).toEqual(1)
+  })
 })
