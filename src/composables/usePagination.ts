@@ -62,7 +62,16 @@ export function usePagination({
     currentPage.value = newPage
   }
 
-  function setLimit() {}
+  function setLimit(newLimit: number) {
+    const oldLimit = currentLimit.value
+    currentLimit.value = limitsWhitelist.value.has(newLimit)
+      ? newLimit
+      : [...limitsWhitelist.value][0]
+
+    if (oldLimit !== currentLimit.value) {
+      currentPage.value = 1
+    }
+  }
 
   return {
     currentPage,
