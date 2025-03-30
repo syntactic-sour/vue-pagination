@@ -7,6 +7,7 @@ export function usePaginationWithRouter(limits = DEFAULT_PAGINATION_LIMITS) {
   const router = useRouter()
 
   const {
+    limitsWhitelist,
     currentPage,
     pagesTotal,
     paginationApiParams,

@@ -88,6 +88,7 @@ export function usePagination({
   }
 
   return {
+    limitsWhitelist,
     currentPage,
     pagesTotal,
     paginationApiParams,
