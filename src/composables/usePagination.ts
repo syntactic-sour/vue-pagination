@@ -73,7 +73,12 @@ export function usePagination({
     }
   }
 
-  function setNextPage() {}
+  function setNextPage() {
+    if (isFinite(total.value) && currentPage.value === pagesTotal.value) {
+      return
+    }
+    setPage(currentPage.value + 1)
+  }
 
   function setPrevPage() {}
 
