@@ -27,8 +27,28 @@ export function usePagination({
     limit: currentLimit.value,
   }))
 
+  const pagesTotal = computed(() => {
+    if (!isFinite(total.value)) {
+      return currentPage.value
+    }
+
+    if (total.value === 0) {
+      return 1
+    }
+
+    return Math.ceil(total.value / currentLimit.value)
+  })
+
+  function setTotal() {}
+
+  function setPage() {}
+
   return {
     currentPage,
+    pagesTotal,
     paginationApiParams,
+
+    setTotal,
+    setPage,
   }
 }
