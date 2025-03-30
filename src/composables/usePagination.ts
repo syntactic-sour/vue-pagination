@@ -80,7 +80,12 @@ export function usePagination({
     setPage(currentPage.value + 1)
   }
 
-  function setPrevPage() {}
+  function setPrevPage() {
+    if (currentPage.value === 1) {
+      return
+    }
+    setPage(currentPage.value - 1)
+  }
 
   return {
     currentPage,

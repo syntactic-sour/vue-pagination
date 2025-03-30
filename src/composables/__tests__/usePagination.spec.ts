@@ -172,7 +172,7 @@ describe('usePagination', () => {
 
     setPage(1)
     expect(currentPage.value).toEqual(1)
-    expect(pagesTotal.value).toEqual(1)
+    expect(pagesTotal.value).toEqual(10)
     setPrevPage()
     expect(currentPage.value).toEqual(1)
   })
