@@ -39,7 +39,21 @@ export function usePagination({
     return Math.ceil(total.value / currentLimit.value)
   })
 
-  function setTotal() {}
+  function correctCurrentPage() {
+    if (total.value === 0) {
+      currentPage.value = 1
+      return
+    }
+
+    if (total.value <= (currentPage.value - 1) * currentLimit.value) {
+      currentPage.value = Math.ceil(total.value / currentLimit.value)
+    }
+  }
+
+  function setTotal(newTotal: number) {
+    total.value = newTotal >= 0 ? newTotal : 0
+    correctCurrentPage()
+  }
 
   function setPage() {}
 
